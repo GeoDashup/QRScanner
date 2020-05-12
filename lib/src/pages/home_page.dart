@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:qrscanner/src/models/scan_model.dart';
 
 import 'package:qrscanner/src/pages/direcciones_page.dart';
-import 'package:qrscanner/src/pages/mpas_page.dart';
+import 'package:qrscanner/src/pages/mapas_page.dart';
 
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrscanner/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -64,28 +66,37 @@ class _HomePageState extends State<HomePage> {
 
       switch(paginaActual){
 
-          case 0: return MapsPage();
+          case 0: return MapasPage();
           case 1: return DirectionPage();
 
           default:
-          return MapsPage();
+          return MapasPage();
         }
       }
 
-      _scanQR() async{
+      _scanQR() async{ 
+        
+        //https://github.com/GeoDashup
+        //geo:40.7242333047051705,-69.00731459101564
 
-        dynamic futureString = "";
 
-        try{
-          futureString = await BarcodeScanner.scan();
-        } catch(e){
-          futureString = e.toString();
-        }
+        String futureString = "https://github.com/GeoDashup";
 
-        print("Future String: $futureString");
+        // try {
 
-        if(futureString == null){
-          print("Tenemos información");
+        //   futureString = await BarcodeScanner.scan();
+        // } catch( e ) {
+
+        //   futureString = e.toString();
+        // }
+
+        // print( "Future String: $futureString" );
+
+        if( futureString != null ) {
+          
+          final scan = ScanModel(valor: futureString);
+
+          DBProvider.db.nuevoScan(scan);
         }
 
       }
