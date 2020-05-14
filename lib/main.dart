@@ -7,17 +7,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       title: 'QR Scanner',
       initialRoute: "home",
       routes: {
         "home": (BuildContext context) => HomePage()
       },
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black)
-      ),
+      // theme: ThemeData(
+      //   primaryColor: Colors.black,
+      //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black)
+      // ),
         
       
     );
