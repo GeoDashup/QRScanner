@@ -40,7 +40,7 @@ class DBProvider {
 
   // Crear registros
 
-  //Forma que deberiamos saber
+    //Forma que deberiamos saber
   nuevoScanRaw(ScanModel nuevoScan) async {
 
     final db = await database;
@@ -51,7 +51,7 @@ class DBProvider {
     return res;
   }
 
-  //Forma que vamos a utilizar
+    //Forma que vamos a utilizar
 
   nuevoScan(ScanModel nuevoScan) async {
 
@@ -62,20 +62,23 @@ class DBProvider {
     return res;
   }
 
-  // SELECT _ POBtener información
+  // SELECT - Obtener información
 
-  Future<ScanModel> getScanId(int id) async {
+  Future<ScanModel> getScanId( int id )  async {
+
     final db = await database;
 
-    final res = await db.query("Scans", where: "id = ?", whereArgs: [id]);
+    final res = await db.query( "Scans", where: "id = ?", whereArgs: [id] );
 
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
+
   }
 
   Future<List<ScanModel>> getTodosScan() async {
+
     final db = await database;
 
-    final res = await db.query("Scans");
+    final res = await db.query( "Scans" );
 
     List<ScanModel> list = res.isNotEmpty
         ? res.map((scan) => ScanModel.fromJson(scan)).toList()
@@ -94,6 +97,7 @@ class DBProvider {
         : [];
 
     return list;
+    
   }
 
   //Actualizar registros

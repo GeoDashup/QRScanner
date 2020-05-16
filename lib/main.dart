@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
       routes: {
         "home": (BuildContext context) => HomePage()
       },
-      // theme: ThemeData(
-      //   primaryColor: Colors.black,
-      //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black)
-      // ),
+      theme: ThemeData(
+        primaryColor: Colors.black,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Colors.black)
+      ),
         
       
     );
