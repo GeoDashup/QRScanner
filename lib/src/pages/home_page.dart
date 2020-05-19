@@ -1,3 +1,7 @@
+
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:qrscanner/src/bloc/scans_bloc.dart';
@@ -40,7 +44,7 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBar: _createBNB(),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
-            onPressed: _scanQR,
+            onPressed: () => _scanQR(context),
             child: Icon(Icons.filter_center_focus)),
         );
       }
@@ -80,7 +84,7 @@ class _HomePageState extends State<HomePage> {
         }
       }
 
-      _scanQR() async{ 
+      _scanQR(BuildContext context) async{ 
         
         //https://github.com/GeoDashup
         //geo:40.7242333047051705,-69.00731459101564
@@ -88,13 +92,13 @@ class _HomePageState extends State<HomePage> {
 
         dynamic futureString = "https://github.com/GeoDashup";
 
-        try {
+        // try {
 
-          futureString = await BarcodeScanner.scan();
-        } catch( e ) {
+        //   futureString = await BarcodeScanner.scan();
+        // } catch( e ) {
 
-          futureString = e.toString();
-        }
+        //   futureString = e.toString();
+        // }
 
         if( futureString != null ) {
           
@@ -103,10 +107,19 @@ class _HomePageState extends State<HomePage> {
 
           final scan2 = ScanModel(valor: "geo:40.7242333047051705,-69.00731459101564");
           scansBloc.agregarScan(scan2);           
-
-          utils.abrirScan(scan);
+          
+          
+          if ( Platform.isIOS ) {
+            Future.delayed(Duration(milliseconds: 750) , (){
+              utils.abrirScan(scan, context);
+            });
+            
+          } else {
+            utils.abrirScan(scan, context);
+          }
           
           }
+
 
           
 
