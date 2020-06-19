@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'QR Scanner',
-      initialRoute: "home",
+      initialRoute: "mapa",
       routes: {
         "home": (BuildContext context) => HomePage(),
         "mapa": (BuildContext context) => MapaPage()
@@ -26,11 +26,4 @@ class MyApp extends StatelessWidget {
 }
 
 
-    // return TileLayerOptions(
-    //         urlTemplate: 'https://api.tiles.mapbox.com/v4/'
-    //             '{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}',
-    //         additionalOptions: {
-    //         'accessToken':'pk.eyJ1Ijoiam9yZ2VncmVnb3J5IiwiYSI6ImNrODk5aXE5cjA0c2wzZ3BjcTA0NGs3YjcifQ.H9LcQyP_-G9sxhaT5YbVow',
-    //         'id': 'mapbox.streets'
-    //         }
-    // );
+    
